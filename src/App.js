@@ -6,14 +6,20 @@ import Player from './Player';
 
 
 class App extends Component {
-  render() {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      players: props.initialPlayers,
+    };
+  }
+  render() {
     return (
       <div className="scoreboard">
-        <Header title="ScoreBoard" />
+        <Header />
 
         <div className="players">
-          { this.props.players.map(function(player) {
+          { this.state.players.map(function(player) {
             return <Player name={player.name} score={player.score} key={player.id}/>
           })}
         </div>
@@ -23,7 +29,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  players: PropTypes.arrayOf(PropTypes.shape({
+  initialPlayers: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     score: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,

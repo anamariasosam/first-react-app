@@ -13,4 +13,7 @@ Header.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
+Header.defaultProps = {
+  title: "ScoreBoard"
+}
 export default Header

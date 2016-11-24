@@ -25,6 +25,6 @@ var PLAYERS = [
 ]
 
 ReactDOM.render(
-  <App players={PLAYERS} />,
+  <App initialPlayers={PLAYERS} />,
   document.getElementById('root')
 );
