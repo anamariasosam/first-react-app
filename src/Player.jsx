@@ -6,6 +6,7 @@ class Player extends Component {
     const {
       name,
       score,
+      onScoreChange,
     } = this.props
 
     return (
@@ -14,7 +15,7 @@ class Player extends Component {
           {name}
         </div>
         <div className="player-score">
-          <Counter score={score} />
+          <Counter score={score} onChange={onScoreChange}/>
         </div>
       </div>
     );
@@ -24,6 +25,7 @@ class Player extends Component {
 Player.propTypes = {
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
+  onScoreChange: PropTypes.func.isRequired,
 };
 
 export default Player;

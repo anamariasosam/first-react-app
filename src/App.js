@@ -12,16 +12,30 @@ class App extends Component {
     this.state = {
       players: props.initialPlayers,
     };
+
+     this.onScoreChange = this.onScoreChange.bind(this);
   }
+
+  onScoreChange(index, delta) {
+    this.state.players[index].score += delta;
+    this.setState(this.state);
+  }
+
   render() {
     return (
       <div className="scoreboard">
         <Header />
 
         <div className="players">
-          { this.state.players.map(function(player) {
-            return <Player name={player.name} score={player.score} key={player.id}/>
-          })}
+          { this.state.players.map(function(player, index) {
+            return(
+              <Player
+                onScoreChange={ function(delta) { this.onScoreChange(index, delta) }.bind(this) }
+                name={player.name}
+                score={player.score}
+                key={player.id} />
+            )
+          }.bind(this))}
         </div>
       </div>
     );
