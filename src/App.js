@@ -19,6 +19,7 @@ class App extends Component {
 
         <div className="players">
           <Player name="ana" score={110} />
+          <Player name="alex" score={100} />
         </div>
       </div>
     );
