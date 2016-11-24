@@ -5,6 +5,7 @@ class Player extends Component {
   render() {
     const {
       name,
+      score,
     } = this.props
 
     return (
@@ -13,7 +14,7 @@ class Player extends Component {
           {name}
         </div>
         <div className="player-score">
-          <Counter />
+          <Counter initialScore={score} />
         </div>
       </div>
     );
