@@ -1,8 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './Header';
 
 class App extends Component {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //
+  //   }
+  // }
+  //
   render() {
     const {
       name,
@@ -11,9 +18,7 @@ class App extends Component {
 
     return (
       <div className="scoreboard">
-        <div className="header">
-          <h1>scoreboard</h1>
-        </div>
+        <Header title="ScoreBoard" />
 
         <div className="players">
           <div className="player">
@@ -38,7 +43,6 @@ class App extends Component {
 
 App.propTypes = {
   name: PropTypes.string.isRequired,
-  name: PropTypes.integer.isRequired,
 };
 
 export default App;
