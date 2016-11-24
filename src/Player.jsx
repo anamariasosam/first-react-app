@@ -1,13 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import Counter from './Counter';
 
 class Player extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //
-  //   }
-  // }
-  //
   render() {
     const {
       name,
@@ -20,13 +14,7 @@ class Player extends Component {
           {name}
         </div>
         <div className="player-score">
-          <div className="counter">
-            <button className="counter-action decrement"> - </button>
-            <div className="counter-score">
-              {score}
-            </div>
-            <button className="counter-action increment"> + </button>
-          </div>
+          <Counter score={score} />
         </div>
       </div>
     );
