@@ -1,53 +1,106 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 import Player from './Player';
+import AddPlayerForm from './AddPlayerForm';
 
-
+var nextId = 4;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      players: props.initialPlayers,
+        players: [
+        {
+          id: 11324,
+          name: "Ana",
+          score: 11,
+
+        },
+        {
+          id: 224,
+          name: "Alex",
+          score: 112,
+
+        },
+        {
+          id: 45673,
+          name: "Alex",
+          score: 112,
+
+        },
+      ],
     };
 
      this.onScoreChange = this.onScoreChange.bind(this);
-  }
-
-  onScoreChange(index, delta) {
-    this.state.players[index].score += delta;
-    this.setState(this.state);
+     this.onPlayerAdd = this.onPlayerAdd.bind(this);
   }
 
   render() {
+    const {
+      players
+    } = this.state;
     return (
       <div className="scoreboard">
-        <Header players={this.state.players}/>
+        <Header players={players} />
 
         <div className="players">
-          { this.state.players.map(function(player, index) {
+          {players.map(player => {
+            const {
+              id,
+              name,
+              score,
+            } = player;
             return(
               <Player
-                onScoreChange={ function(delta) { this.onScoreChange(index, delta) }.bind(this) }
-                name={player.name}
-                score={player.score}
-                key={player.id} />
+                onScoreChange={delta => { this.onScoreChange(id, delta); }}
+                name={name}
+                score={score}
+                key={id}
+              />
             )
-          }.bind(this))}
+          })}
         </div>
+
+        <AddPlayerForm onAdd={this.onPlayerAdd} />
       </div>
     );
   }
-}
 
-App.propTypes = {
-  initialPlayers: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    score: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-  })).isRequired,
+  onScoreChange(index, delta) {
+    let { players } = this.state;
+
+    players.forEach(item => {
+      if (item.id === index) {
+        item.score += delta;
+      }
+    });
+
+    this.setState({ players });
+  }
+
+  onPlayerAdd(name) {
+    let { players } = this.state;
+
+    // players.push({
+    //   name,
+    //   score: 0,
+    //   id: nextId,
+    // });
+
+    const newPlayers = [
+      ...players,
+      {
+        name,
+        score: 0,
+        id: nextId,
+      },
+    ];
+
+    this.setState({ players: newPlayers });
+    nextId += 1;
+  }
 }
 
 export default App;
